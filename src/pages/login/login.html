@@ -16,18 +16,18 @@
 
   <ion-item>
     <ion-label floating>Username</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="email" name="email" vlaue=""></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating>Password</ion-label>
-    <ion-input type="password"></ion-input>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
   </ion-item>
 
 </ion-list>
 
 <div padding>
-    <button ion-button color="primary" block (click)="showAlert()">Sign In</button>
+    <button ion-button color="primary" block (click)="authenticate()">Sign In</button>
 </div>
 
 </ion-content>
