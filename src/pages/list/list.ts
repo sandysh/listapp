@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 import { NavController, NavParams } from 'ionic-angular';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AlertController } from 'ionic-angular';
 import { ItemDetailsPage } from '../item-details/item-details';
 
 @Component({
@@ -9,26 +10,44 @@ import { ItemDetailsPage } from '../item-details/item-details';
   templateUrl: 'list.html'
 })
 export class ListPage {
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  icon: string;
+  auth_token: any;
+  users: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
-
-    this.items = [];
-    for(let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public httpClient: HttpClient) {
+    this.icon = 'contact';
+    this.auth_token = localStorage.getItem('auth_token');
+    this.users = [];
   }
+  
+  ionViewDidLoad() {
+        this.fetchUsers();
+  }
+  
+  fetchUsers() {
+      this.httpClient.get('http://laravel.dev/api/users',{
+      headers: new HttpHeaders().set('Authorization', 'Bearer'+" "+this.auth_token),})
+     .subscribe(data => {
+        this.users = data.data;
+        // console.log(this.users);        
+    },err => {
+      this.showAlert('Error!!!','cannot fetch users');
+    })
+ }
+    
+    showAlert(title,subtitle) {
+      let alert = this.alertCtrl.create({
+        title: title,
+        subTitle: subtitle,
+        buttons: ['Dismiss']
+      });
+      alert.present();
+    }
 
-  itemTapped(event, item) {
+
+  itemTapped(event, user) {
     this.navCtrl.push(ItemDetailsPage, {
-      item: item
+      user: user
     });
   }
 }

@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { LoginPage } from '../pages/login/login';
+import { LogoutPage } from '../pages/logout/logout';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ListPage } from '../pages/list/list';
 
@@ -19,6 +20,7 @@ export class MyApp {
   // make HelloIonicPage the root (or first) page
   rootPage = LoginPage;
   pages: Array<{title: string, component: any}>;
+  auth_token: any;
 
   constructor(
     public platform: Platform,
@@ -26,12 +28,20 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen
   ) {
+    console.log("i am always running");
+    this.auth_token = localStorage.getItem('auth_token');
     this.initializeApp();
+    if(this.auth_token == null || this.auth_token == undefined || this.auth_token == 'null' || this.auth_token == 'undefined' || this.auth_token == '' )
+    {
+        this.rootPage = LoginPage;
+    } else {
+        this.rootPage = ListPage;
+    }
 
     // set our app's pages
     this.pages = [
       { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: ListPage }
+      { title: 'Logout', component: LogoutPage }
     ];
   }
 

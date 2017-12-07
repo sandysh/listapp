@@ -3,16 +3,28 @@
     <button menuToggle *ngIf="!selectedItem">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Item Details</ion-title>
+    <ion-title>User Details</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <h3 text-center *ngIf="selectedItem">
-    {{selectedItem.title}}
-    <ion-icon [name]="selectedItem.icon"></ion-icon>
+  <h3 text-center *ngIf="selectedUser">
+    {{selectedUser.name}}
   </h3>
-  <h4 text-center *ngIf="selectedItem">
-    You navigated here from <b>{{selectedItem.title}}</b>
+  <h4 text-center *ngIf="selectedUser">
+    <ion-item-divider>
+      Email: {{selectedUser.email}}
+    </ion-item-divider>
+    <ion-item-divider>
+      LoginCount: {{selectedUser.login_count}}
+    </ion-item-divider>
+    <ion-item-divider>
+      created_at: {{selectedUser.created_at}}
+    </ion-item-divider>
+    <ion-item-divider>
+    <ion-badge color="{{selectedUser.status ? 'secondary':'danger'}}">{{selectedUser.status ? 'Active' : "disabled"}}</ion-badge>
+    </ion-item-divider>
+
+
   </h4>
 </ion-content>

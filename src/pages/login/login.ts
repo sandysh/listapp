@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HttpClient } from '@angular/common/http';
-import { AlertController } from 'ionic-angular';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController } from 'ionic-angular';
 import { ListPage } from '../list/list';
-import { SplashScreen } from '@ionic-native/splash-screen';
 // import { LoginPage } from '../login/login';
 /**
  * Generated class for the LoginPage page.
@@ -25,19 +23,18 @@ export class LoginPage {
   password: any;
   auth_token: any;
   authenticated: boolean;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public httpClient: HttpClient, private splashScreen: SplashScreen) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public httpClient: HttpClient) {
     this.email="";
     this.password="";
-    this.auth_token = '';
+    this.auth_token = localStorage.getItem('auth_token');
   }
   ionViewDidLoad() {
-    this.auth_token = localStorage.getItem('auth_token');
-    if(this.auth_token != null)
-    {
-        this.splashScreen.show();
-        this.navCtrl.setRoot(ListPage, {}, {animate: true, direction: 'forward'});
-        this.splashScreen.hide();
-    } 
+    // if(this.auth_token != 'null' || this.auth_token != 'undefined')
+    // {
+    //     // console.log(this.auth_token);  
+    //    this.navCtrl.setRoot(ListPage, {}, {animate: true, direction: 'forward'});
+    // } 
+        
   }
   
   authenticate() {

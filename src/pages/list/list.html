@@ -3,18 +3,18 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>My First List</ion-title>
+    <ion-title>List of Users</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon name="{{item.icon}}" item-left></ion-icon>
-      {{item.title}}
+    <button ion-item *ngFor="let user of users" (click)="itemTapped($event, user)">
+      <ion-icon name="{{icon}}" item-left></ion-icon>
+      {{user.name}}
       <div class="item-note" item-right>
-        {{item.note}}
-      </div>
+        <ion-badge item-end color="{{user.status ? 'secondary':'danger'}}">{{user.status ? 'Active' : "disabled"}}</ion-badge>      
+    </div>
     </button>
   </ion-list>
 </ion-content>
