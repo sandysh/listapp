@@ -18,7 +18,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = LoginPage;
+  rootPage:any = LoginPage;
   pages: Array<{title: string, component: any}>;
   auth_token: any;
 
@@ -30,7 +30,6 @@ export class MyApp {
   ) {
     console.log("i am always running");
     this.auth_token = localStorage.getItem('auth_token');
-    console.log(this.auth_token);
     this.initializeApp();
 
 

@@ -12,8 +12,7 @@ import { ItemDetailsPage } from '../item-details/item-details';
 export class ListPage {
   icon: string;
   auth_token: any;
-  users: Array<{title: string, note: string, icon: string}>;
-  data: any;
+  users: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public httpClient: HttpClient) {
     this.icon = 'contact';
@@ -29,8 +28,8 @@ export class ListPage {
       this.httpClient.get('http://laravel.dev/api/users',{
       headers: new HttpHeaders().set('Authorization', 'Bearer'+" "+this.auth_token),})
      .subscribe(data => {
-        this.users = data.data;
-        // console.log(this.users);        
+        console.log(data);        
+        this.users = data;
     },err => {
       this.showAlert('Error!!!','cannot fetch users');
     })

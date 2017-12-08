@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { AlertController } from 'ionic-angular';
 import { ListPage } from '../list/list';
-// import { LoginPage } from '../login/login';
 /**
  * Generated class for the LoginPage page.
  *
@@ -27,6 +26,7 @@ export class LoginPage {
     this.email="sandeshsatyal@gmail.com";
     this.password="sandy@123";
     this.auth_token = localStorage.getItem('auth_token');
+    this.token = null;
   }
   ionViewDidLoad() {
     // if(this.auth_token != 'null' || this.auth_token != 'undefined')
@@ -40,14 +40,15 @@ export class LoginPage {
   authenticate() {
       this.httpClient.post('http://laravel.dev/api/authenticate',{email:this.email,password:this.password})
      .subscribe(data => {
-      this.auth_token = data.token;
+      this.auth_token = data;
       this.authenticated = true;
       localStorage.setItem('auth_token', this.auth_token);
       console.log("user authenticated with token"+this.auth_token);
       this.navCtrl.setRoot(ListPage, {}, {animate: true, direction: 'forward'});
     },err => {
       this.showAlert('Login Error!!!','Invalid Credentials');
-    })
+    }
+    )
     }
     
     showAlert(title,subtitle) {
