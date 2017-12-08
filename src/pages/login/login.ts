@@ -24,8 +24,8 @@ export class LoginPage {
   auth_token: any;
   authenticated: boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public httpClient: HttpClient) {
-    this.email="";
-    this.password="";
+    this.email="sandeshsatyal@gmail.com";
+    this.password="sandy@123";
     this.auth_token = localStorage.getItem('auth_token');
   }
   ionViewDidLoad() {

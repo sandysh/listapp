@@ -30,13 +30,9 @@ export class MyApp {
   ) {
     console.log("i am always running");
     this.auth_token = localStorage.getItem('auth_token');
+    console.log(this.auth_token);
     this.initializeApp();
-    if(this.auth_token == null || this.auth_token == undefined || this.auth_token == 'null' || this.auth_token == 'undefined' || this.auth_token == '' )
-    {
-        this.rootPage = LoginPage;
-    } else {
-        this.rootPage = ListPage;
-    }
+
 
     // set our app's pages
     this.pages = [
@@ -47,6 +43,12 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
+        if(this.auth_token == null || this.auth_token == undefined || this.auth_token == 'null' || this.auth_token == 'undefined' || this.auth_token == '' )
+        {
+            this.rootPage = LoginPage;
+        } else {
+            this.rootPage = ListPage;
+        }
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();

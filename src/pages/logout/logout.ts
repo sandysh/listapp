@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LoginPage } from '../logout/logout';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { LoginPage } from '../login/login';
 /**
  * Generated class for the LogoutPage page.
  *
@@ -15,12 +15,18 @@ import { LoginPage } from '../logout/logout';
 })
 export class LogoutPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public app:App) {
+    this.logout();
+  }
+  
+  logout()
+  {
+    localStorage.removeItem('auth_token');
+    this.navCtrl.setRoot(LoginPage, {}, {animate: false});
   }
 
   ionViewDidLoad() {
-    localStorage.setItem('auth_token', null);
-    this.navCtrl.setRoot(LoginPage, {}, {animate: true, direction: 'forward'});
+    
   }
 
 }

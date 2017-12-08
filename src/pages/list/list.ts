@@ -13,6 +13,7 @@ export class ListPage {
   icon: string;
   auth_token: any;
   users: Array<{title: string, note: string, icon: string}>;
+  data: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public httpClient: HttpClient) {
     this.icon = 'contact';
