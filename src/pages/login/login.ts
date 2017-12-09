@@ -10,7 +10,6 @@ import { ListPage } from '../list/list';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
