@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { NavController, NavParams, App } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 /**
  * Generated class for the LogoutPage page.
@@ -8,7 +8,7 @@ import { LoginPage } from '../login/login';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-logout',
   templateUrl: 'logout.html',
