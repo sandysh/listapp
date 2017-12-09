@@ -25,7 +25,7 @@ export class ListPage {
   }
   
   fetchUsers() {
-      this.httpClient.get('http://laravel.dev/api/users',{
+      this.httpClient.get('http://app.milifebery.co/api/users',{
       headers: new HttpHeaders().set('Authorization', 'Bearer'+" "+this.auth_token),})
      .subscribe(data => {
         console.log(data);        

@@ -38,7 +38,7 @@ export class LoginPage {
   }
   
   authenticate() {
-      this.httpClient.post('http://laravel.dev/api/authenticate',{email:this.email,password:this.password})
+      this.httpClient.post('http://app.milifebery.co/api/authenticate',{email:this.email,password:this.password})
      .subscribe(data => {
       this.auth_token = data;
       this.authenticated = true;
